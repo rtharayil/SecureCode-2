@@ -1,8 +1,10 @@
 from flask import Flask, request, render_template, redirect, url_for, session, flash
 import sqlite3
+from faker import Faker
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
+fake = Faker()
 
 # Initialize the database
 def init_db():
@@ -12,6 +14,20 @@ def init_db():
                  (id INTEGER PRIMARY KEY, username TEXT, password TEXT)''')
     c.execute("INSERT OR IGNORE INTO users (username, password) VALUES ('admin', 'admin123')")
     c.execute("INSERT OR IGNORE INTO users (username, password) VALUES ('user', 'user123')")
+    
+    # Create a table for customers if it doesn't exist
+    c.execute('''CREATE TABLE IF NOT EXISTS customers 
+                 (id INTEGER PRIMARY KEY, name TEXT, email TEXT, phone TEXT)''')
+    
+    # Check if the customers table is empty and populate it with fake data
+    c.execute("SELECT COUNT(*) FROM customers")
+    if c.fetchone()[0] == 0:
+        for _ in range(10):  # Add 10 random customers
+            name = fake.name()
+            email = fake.email()
+            phone = fake.phone_number()
+            c.execute("INSERT INTO customers (name, email, phone) VALUES (?, ?, ?)", (name, email, phone))
+    
     conn.commit()
     conn.close()
 
@@ -34,6 +50,15 @@ def secure_login(username, password):
     result = c.fetchone()
     conn.close()
     return result
+
+# Fetch all customers from the database
+def get_customers():
+    conn = sqlite3.connect('example.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM customers")
+    customers = c.fetchall()
+    conn.close()
+    return customers
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -65,13 +90,8 @@ def admin():
     if 'username' not in session:
         return redirect(url_for('index'))
     
-    # Simulate critical customer information
-    customers = [
-        {"id": 1, "name": "John Doe", "email": "john@example.com", "phone": "123-456-7890"},
-        {"id": 2, "name": "Jane Smith", "email": "jane@example.com", "phone": "987-654-3210"},
-        {"id": 3, "name": "Alice Johnson", "email": "alice@example.com", "phone": "555-555-5555"}
-    ]
-    
+    # Fetch customers from the database
+    customers = get_customers()
     return render_template('admin.html', username=session['username'], customers=customers)
 
 @app.route('/logout')
