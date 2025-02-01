@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+
+        .profile-info {
+            margin: 20px 0;
+        }
+
+        .profile-info p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .profile-info label {
+            font-weight: bold;
+        }
+
+        .profile-info .credit-card {
+            color: #FF4D4D;
+            font-weight: bold;
+        }
+
+        .profile-info .back-link {
+            margin-top: 20px;
+            display: inline-block;
+            font-size: 1.1em;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        .profile-info .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            padding: 10px;
+            background-color: #f44336;
+            color: white;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .alert a {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>User Profile</h1>
+
+        {% if customer %}
+            <div class="profile-info">
+                <p><label>Name: </label>{{ customer[1] }}</p>
+                <p><label>Email: </label>{{ customer[2] }}</p>
+                <p><label>Phone: </label>{{ customer[3] }}</p>
+                <p><label>Credit Card: </label><span class="credit-card">{{ customer[4] }}</span></p>
+            </div>
+        {% else %}
+            <div class="alert">
+                <strong>Error!</strong> Profile not found. Please check the URL or contact support.
+            </div>
+        {% endif %}
+
+        <a href="{{ url_for('admin') }}" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Admin Dashboard
+        </a>
+    </div>
+
+</body>
+</html>

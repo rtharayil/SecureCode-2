@@ -170,3 +170,4 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 cmd/package-lock.json
+acess/login/example.db
