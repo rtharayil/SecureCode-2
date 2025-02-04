@@ -92,20 +92,156 @@ Design and implement controls to address identified threats. Examples:
 
 ## **6. Example: Threat Modeling for a Web Application**
 
-### **Scenario:**  
-A web application allows users to log in, upload files, and view reports.
+# Scenario
 
-### **Step 1: Define the Scope**  
-- **Components:** User interface, authentication service, file storage, reporting module.  
-- **Boundaries:** External users, internal admin panel.
+A wireless insulin pump communicates with a mobile app to allow patients to monitor and control insulin delivery. The system includes:
+
+### System Components
+- **Mobile App**: Provides the user interface for patients.
+- **Cloud Server**: Handles data storage and processing.
+- **Insulin Pump**: A hardware device for insulin delivery.
+
+### Key Features
+- Patients can adjust insulin doses via the app.
+- Data is transmitted wirelessly between the pump, app, and cloud.
+- The system stores patient health data in the cloud.
+
+
+## User Stories for Wireless Insulin Pump Application
+
+### **Epic 1: Insulin Dose Management**
+
+#### **User Story 1: Adjusting Insulin Dose**
+**As a** patient,  
+**I want** to adjust my insulin dose directly from the mobile app,  
+**So that** I can manage my glucose levels efficiently without manual intervention.
+
+**Acceptance Criteria:**
+- The app should display the current insulin dose.
+- Users should be able to increase or decrease the dose within prescribed limits.
+- Confirmation prompts should be shown before applying changes.
+- Successful updates must sync with the insulin pump.
+
+---
+
+#### **User Story 2: Automatic Dose Recommendations**
+**As a** patient,  
+**I want** the app to provide dose recommendations based on my blood glucose readings,  
+**So that** I can make informed decisions about my insulin delivery.
+
+**Acceptance Criteria:**
+- Integration with third-party glucose monitoring APIs.
+- Dose recommendations based on historical trends.
+- Visual indicators to show low, normal, or high glucose levels.
+- A disclaimer that patients should consult their healthcare provider before finalizing doses.
+
+---
+
+### **Epic 2: Data Monitoring and Visualization**
+
+#### **User Story 3: Real-Time Monitoring**
+**As a** patient,  
+**I want** to view real-time insulin delivery data on the mobile app,  
+**So that** I can stay aware of my ongoing insulin management.
+
+**Acceptance Criteria:**
+- Display current insulin delivery rate.
+- Show warnings for abnormal pump behavior (e.g., delivery failures).
+- Provide timestamps for data updates.
+
+---
+
+#### **User Story 4: Historical Data Visualization**
+**As a** patient,  
+**I want** to see historical data of my insulin delivery and glucose levels,  
+**So that** I can track trends and make better health decisions.
+
+**Acceptance Criteria:**
+- Line charts for glucose levels and insulin delivery trends.
+- Filters for daily, weekly, and monthly views.
+- Ability to export data in PDF or CSV formats.
+
+---
+
+### **Epic 3: Cloud Data Management**
+
+#### **User Story 5: Secure Data Storage**
+**As a** system administrator,  
+**I want** to securely store patient data in the cloud,  
+**So that** it remains protected and accessible for authorized users.
+
+**Acceptance Criteria:**
+- Encrypted storage of patient health data.
+- Role-based access control for data retrieval.
+- GDPR/HIPAA compliance.
+
+---
+
+#### **User Story 6: Data Synchronization**
+**As a** patient,  
+**I want** my data to sync seamlessly between the app, cloud, and pump,  
+**So that** I have up-to-date information at all times.
+
+**Acceptance Criteria:**
+- Automatic background sync every 5 minutes.
+- Manual sync option.
+- Sync error notifications with retry options.
+
+---
+
+#### **Epic 4: User Notifications and Alerts**
+
+#### **User Story 7: Pump Alerts**
+**As a** patient,  
+**I want** to receive alerts when the insulin pump encounters an issue,  
+**So that** I can take immediate corrective action.
+
+**Acceptance Criteria:**
+- Alerts for battery issues, delivery failures, or low insulin levels.
+- Notifications displayed both in-app and as push notifications.
+
+---
+
+#### **User Story 8: Dosage Reminders**
+**As a** patient,  
+**I want** to receive reminders to check or adjust my insulin dosage,  
+**So that** I maintain consistent glucose control.
+
+**Acceptance Criteria:**
+- Customizable reminder schedules.
+- Push notifications with snooze options.
+
+---
+
+### **Epic 5: Security and Authentication**
+
+#### **User Story 9: Secure Authentication**
+**As a** patient,  
+**I want** to log in securely to the app,  
+**So that** my health data is protected.
+
+**Acceptance Criteria:**
+- Support for multi-factor authentication (MFA).
+- Secure password storage and recovery mechanisms.
+
+---
+
+#### **User Story 10: Session Management**
+**As a** patient,  
+**I want** my app session to time out after inactivity,  
+**So that** unauthorized access is prevented.
+
+**Acceptance Criteria:**
+- Automatic session timeout after a defined period of inactivity.
+- Prompt for re-authentication upon session expiry.
+
 
 ### **Step 2: Create a Data Flow Diagram**  
-- **External Entities:** User, Admin.  
-- **Processes:** Authentication, File Upload, Report Generation.  
-- **Data Stores:** User Database, File Storage, Report Cache.  
+- **External Entities:** 
+- **Processes:**  
+- **Data Stores:**  
 - **Data Flows:**  
-  - User → Authentication → User Database  
-  - User → File Upload → File Storage
+
 
 ### **Step 3: Identify Threats (Using STRIDE)**  
 - **Spoofing:** Attackers could impersonate users.  
