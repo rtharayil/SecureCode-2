@@ -1,5 +1,6 @@
-```markdown
+
 # OWASP Top 10: A Detailed Overview
+notes by Ranjith Tharayil
 
 The Open Web Application Security Project (OWASP) is a nonprofit foundation that works to improve the security of software. One of its most well-known projects is the **OWASP Top 10**, a standard awareness document that highlights the most critical security risks to web applications. It is updated periodically to reflect the evolving threat landscape and is widely used by developers, security professionals, and organizations to prioritize and address vulnerabilities in their applications.
 
@@ -181,4 +182,4 @@ The OWASP Top 10 is based on data from various sources, including vulnerability 
 The OWASP Top 10 is an essential resource for understanding and mitigating the most critical security risks in web applications. By addressing these vulnerabilities, organizations can significantly reduce the likelihood of a security breach and protect their users' data. Regular security assessments, secure coding practices, and continuous monitoring are key to maintaining a robust security posture.
 
 For the latest updates and detailed guidance, always refer to the official OWASP website: [https://owasp.org](https://owasp.org).
-```
+
